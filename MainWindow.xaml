@@ -1,0 +1,277 @@
+﻿<Window x:Class="InventoryManagement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InventoryManagement"
+        mc:Ignorable="d"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource MaterialDesignWindow}"
+
+        Name="mainWindow"
+        Title="Phần mềm quản lí kho" Height="450" Width="800"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--menu-->
+            <Grid Grid.Row="0">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="Transparent">
+                    <Grid.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin" Value="2 4 2 4"></Setter>
+                            <Setter Property="Background" Value="Gainsboro"></Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Command="{Binding ReceiptCommand}" Grid.Column="0" ToolTip="Nhập kho">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Nhập kho" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center" Width="24" Height="24"  Kind="ArrowDownBoldCircleOutline" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+                    <Button Command="{Binding DeliveryCommand}" Grid.Column="1" ToolTip="Xuất kho">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Xuất kho" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="ArrowUpBoldCircleOutline" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+                    <Button Command="{Binding ObjectCommand}" Grid.Column="2" ToolTip="Vật tư">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Vật tư" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="Dns" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+                    <Button Command="{Binding UnitCommand}" Grid.Column="3" ToolTip="Đơn vị đo">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Đơn vị đo" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="Altimeter" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+                    <Button Command="{Binding SupplierComand}" Grid.Column="4" ToolTip="Nhà cung cấp">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Nhà cung cấp" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="Factory" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+                    <Button Command="{Binding CustomerCommand}" Grid.Column="5" ToolTip="Khách hàng">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Khách hàng" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="Human" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+                    <Button Command="{Binding UserCommand}" Grid.Column="6" ToolTip="Người dùng">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Người dùng" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="AccountCircle" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+                    <Button CommandParameter="{Binding ElementName=mainWindow}" Command="{Binding LogoutCommand}" Grid.Column="7" ToolTip="Đăng xuất">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Đăng xuất" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center" Width="24" Height="24" Kind="Power" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+                </Grid>
+            </Grid>
+
+            <!--main-->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!--Filter-->
+                <Grid Grid.Row="0">
+                    <materialDesign:Card Margin="5">
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="1">
+                                <Separator Margin="5"></Separator>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition ></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0">
+                                    <materialDesign:Card Background="#03a9f4"  Margin="5"
+                                                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"  
+                                                         Padding="0" >
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Margin="16 16 16 4"     
+                                                       Text="Tổng số tiền thu mua vật tư (VNĐ)">
+                                            </TextBlock>
+                                            <Separator Grid.Row="1" Style="{StaticResource MaterialDesignLightSeparator}" />
+                                            <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" 
+                                                       HorizontalAlignment="Left"      
+                                                       Text="{Binding TotalCosts, StringFormat={}{0:N0}}">
+                                            </TextBlock>
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </Grid>
+
+                                <Grid Grid.Column="1">
+                                    <materialDesign:Card Background="LightGreen" Margin="5"
+                                                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"  
+                                                         Padding="0" >
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Margin="16 16 16 4"     
+                                                       Text="Tổng số tiền bán vật tư (VNĐ)">
+                                            </TextBlock>
+                                            <Separator Grid.Row="1" Style="{StaticResource MaterialDesignLightSeparator}" />
+                                            <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" 
+                                                       HorizontalAlignment="Left"      
+                                                       Text="{Binding TotalIncome, StringFormat={}{0:N0}}">
+                                            </TextBlock>
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </Grid>
+
+                                <Grid Grid.Column="2">
+                                    <materialDesign:Card Background="Yellow"  Margin="5"
+                                                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"  
+                                                         Padding="0">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Margin="16 16 16 4"     
+                                                       Text="Số lượng tài khoản">
+
+                                            </TextBlock>
+                                            <Separator Grid.Row="1" Style="{StaticResource MaterialDesignLightSeparator}" />
+                                            <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" 
+                                                       HorizontalAlignment="Left"      
+                                                       Text="{Binding AccountNumber}">
+                                            </TextBlock>
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </materialDesign:Card>
+                </Grid>
+
+                <!--list-->
+                <materialDesign:Card Grid.Row="1" Margin="5" VerticalAlignment="Stretch">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListView ItemsSource="{Binding Stock}" >
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="Id"></GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Object.DisplayName}" Header="Tên vật tư"></GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Quantity}" Header="Số lượng tồn"></GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Object.Unit.DisplayName}" Header="Đơn vị đo"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+                </materialDesign:Card>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

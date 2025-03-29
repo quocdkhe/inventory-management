@@ -1,0 +1,78 @@
+﻿<Window x:Class="InventoryManagement.ReceiptDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InventoryManagement"
+        mc:Ignorable="d"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource MaterialDesignWindow}"
+        ResizeMode="CanMinimize"
+        x:Name="window"
+        
+        Title="Vật tư" Height="500" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--các element binding từ selected item-->
+            <materialDesign:Card Grid.Row="0" Margin="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBox IsEnabled="False" Grid.Row="0" Text="{Binding ReceiptId, UpdateSourceTrigger=PropertyChanged}" Margin="5" materialDesign:HintAssist.Hint="Mã phiếu nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.ColumnSpan="2" />
+                    <ComboBox ItemsSource="{Binding Objects}" DisplayMemberPath="DisplayName" SelectedItem="{Binding SelectedObject, UpdateSourceTrigger=PropertyChanged}"
+                              Margin="5" Grid.Row="2" materialDesign:ComboBoxAssist.MaxLength="2" 
+                              materialDesign:HintAssist.Hint="Vật tư" 
+                              materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Grid.ColumnSpan="2" >
+                    </ComboBox>
+                    <TextBox Grid.Row="3" Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" Margin="5" materialDesign:HintAssist.Hint="Số lượng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.ColumnSpan="2" />
+                    <TextBox IsEnabled="False" Grid.Row="4" Text="{Binding Unit, UpdateSourceTrigger=PropertyChanged}" Margin="5" materialDesign:HintAssist.Hint="Đơn vị đo" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.ColumnSpan="2" />
+                    <TextBox Grid.Row="5" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" Margin="5" materialDesign:HintAssist.Hint="Đơn giá (VNĐ)" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.ColumnSpan="2" />
+                </Grid>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="1" Margin="5">
+                <WrapPanel>
+                    <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
+                    <Button Command="{Binding EditCommand}" Content="Sửa" Margin="5" Width="100"></Button>
+                    <Button Command="{Binding DeleteCommand}" Content="Xóa" Margin="5" Width="100"></Button>
+                    <Button Command="{Binding CompleteReceipt}" Content="Hoàn thành phiếu nhập" Margin="5" ></Button>
+                </WrapPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView ItemsSource="{Binding ReceiptDetails}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                                <GridViewColumn Header="Mã phiếu nhập" DisplayMemberBinding="{Binding ReceiptId}"></GridViewColumn>
+                                <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding Object.DisplayName}"></GridViewColumn>
+                                <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding Quantity}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn vị đo" DisplayMemberBinding="{Binding Object.Unit.DisplayName}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn giá (VNĐ)" DisplayMemberBinding="{Binding Price, StringFormat={}{0:N0}}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</Window>

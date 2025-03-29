@@ -1,0 +1,68 @@
+﻿<Window x:Class="InventoryManagement.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InventoryManagement"
+        mc:Ignorable="d"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource MaterialDesignWindow}"
+        ResizeMode="CanMinimize"
+        Name="loginWindow"
+        Title="Đăng nhập" Height="300" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <materialDesign:Card Grid.Row="1" Width="350" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="Grid">
+                        <Setter Property="Margin" Value="15 5 15 0"></Setter>
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <TextBox Text="{Binding UserName}" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên đăng nhập"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"  />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <PasswordBox 
+                        PasswordChanged="PasswordBox_PasswordChanged"
+                        x:Name="FloatingPasswordBox"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Mật khẩu"
+                        Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                    />
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button IsDefault="True" Grid.Column="0" Margin="5"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=loginWindow}"
+                        Content="Đăng nhập"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"
+                    />
+                    
+                    <Button Grid.Column="1" Margin="5" 
+                        Command="{Binding RegisterCommand}"
+                        Content="Đăng kí"
+                        Style="{StaticResource MaterialDesignPaperButton}"
+                        ToolTip="Resource name: MaterialDesignPaperButton"
+                    />
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>
